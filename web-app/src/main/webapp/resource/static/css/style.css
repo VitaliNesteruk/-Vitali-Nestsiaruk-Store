@@ -1,0 +1,96 @@
+body {
+    background-color: lightgray;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.header-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-flow: row wrap;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.header-bottom .block {
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+.container {
+    max-width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+table td{
+    padding-left: 10px;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.caption-order {
+    width: 150px;
+    text-align: center;
+}
+
+.caption-price {
+    width: 140px;
+    text-align: center;
+}
+
+.table tbody tr td:first-child {
+    text-align: center;
+}
+
+tbody {
+    background: #fff;
+}
+
+.form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: row wrap;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px;
+}
+
+.form .caption {
+    padding-right: 10px;
+}
+
+
+
+
+@media screen and (max-width: 991px) {
+    .header-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header-bottom .filter {
+        order: 3;
+    } 
+}
+
+@media screen and (max-width: 767px) {
+    .form {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .filter {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+}

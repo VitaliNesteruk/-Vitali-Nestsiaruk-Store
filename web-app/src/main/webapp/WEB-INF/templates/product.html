@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta ontent="text/html" charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="../../resource/static/css/bootstrap.css"
+          th:href="@{/resource/static/css/bootstrap.css}">
+    <link rel="stylesheet" href="../../resource/static/css/style.css"
+          th:href="@{/resource/static/css/style.css}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
+    <title>Product</title>
+</head>
+<body>
+
+<header>
+    <nav class="navbar navbar-dark bg-dark navbar-expand-sm text-light p-1">
+        <div class="container-fluid">
+            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a href="/" class="navbar-brand"><img src="../../resource/static/img/sklad.png"
+                                                  th:href="@{/resource/static/img/sklad.png}"
+                                                  height="40" width="60" alt="Coffee-Machine"></a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="orders.html"
+                           th:href="@{/orders}">Orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="store.html"
+                           th:href="@{/store}">Store</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <nav id="main-header"
+         class="ps-1 py-1 mb-3 navbar navbar-light bg-light text-dark">
+        <ul class="navbar-nav float-start">
+            <li class="nav-item"
+                title="Back to list">
+                <a href="store.html" th:href="@{/store}"
+                   class="btn btn-outline-secondary btn-block">
+                    <i class="bi-arrow-left"></i></a>
+            </li>
+        </ul>
+        <span class="navbar-brand text-uppercase me-auto">&nbsp;&nbsp;Edit product</span>
+    </nav>
+</header>
+
+<section id="product">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <form>
+                            <div class="mb-3">
+                                <label class="form-label"
+                                       for="field_product">Shipper</label>
+                                <select class="form-control"
+                                        id="field_product">
+                                    <option value="0">Savushkin Product</option>
+                                    <option value="1">Santa</option>
+                                    <option value="2">Perfect</option>
+                                    <option value="3">Brest meat-packing plant</option>
+                                    <option value="4">Komunarka</option>
+									<option value="5">Timosha</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label"
+                                       for="field_productName">Product name</label>
+                                <input class="form-control"
+                                       id="field_productName"
+                                       type="text"
+                                       value="Product name"/>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label"
+                                       for="field_value">Value</label>
+                                <input class="form-control"
+                                       id="field_value"
+                                       type="text"
+                                       value="Value"/>
+                            </div>
+							<div class="mb-3">
+                                <label class="form-label"
+                                       for="field_amount">Amount</label>
+                                <input class="form-control"
+                                       id="field_amount"
+                                       type="text"
+                                       value="Amount"/>
+                            </div>
+							<div class="mb-3">
+                                <label class="form-label"
+                                       for="field_price">Price</label>
+                                <input class="form-control"
+                                       id="field_price"
+                                       type="text"
+                                       value="Price"/>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <a href="store.html" th:href="@{/store}"
+                                   class="btn btn-secondary me-1"
+                                   title="Cancel">Cancel</a>
+                                <a href="store.html" th:href="@{/store}"
+                                   class="btn btn-primary"
+                                   title="Save product">Save</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <hr/>
+    <p class="text-center">&copy;2021 Vitali Nesteruk</p>
+</footer>
+
+<script src="../../resource/static/js/bootstrap.min.js"
+        th:href="@{/resource/static/js/bootstrap.min.js}"></script>
+</body>
+</html>

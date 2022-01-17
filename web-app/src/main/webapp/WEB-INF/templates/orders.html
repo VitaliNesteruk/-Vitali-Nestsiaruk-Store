@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="../../resource/static/css/bootstrap.css"
+          th:href="@{/resource/static/css/bootstrap.css}">
+    <link rel="stylesheet" href="../../resource/static/css/style.css"
+          th:href="@{/resource/static/css/style.css}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
+
+    <title>Orders</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-dark bg-dark navbar-expand-sm text-light p-1">
+            <div class="container-fluid">
+                <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <a href="/" class="navbar-brand"><img src="../../resource/static/img/sklad.png"
+                                                      th:href="@{/resource/static/img/sklad.png}"
+                                                      height="40" width="60"
+                        alt="Store"></a>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="orders.html"
+                               th:href="@{/orders}">Orders</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="store.html"
+                               th:href="@{/store}">Store</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="row justify-content-between flex-wrap align-items-center mb-2 mt-2">
+                <div class="col-12 col-lg-2 block title">
+                    <span class="navbar-brand text-uppercase">Orders</span>
+                </div>
+                <div class="col-12 col-lg-7 block filter d-flex justify-content-lg-center">
+                    <form class="form row">
+                        <div class="col-12 col-md form-group">
+                            <span class="caption">From:</span>
+                            <input type="date" id="date_from" class="form-control" name="date_from">
+                        </div>
+                        <div class="col-12 col-md form-group">
+                            <span class="caption">To:</span>
+                            <input type="date" id="date_to" class="form-control" name="date_to">
+                        </div>
+                        <div class="col-12 col-md">
+                            <input type="submit" value="Apply" class="btn btn-dark">
+                        </div>
+                    </form>
+                </div>
+                <div class="col-12 col-lg-3 block buttons d-flex justify-content-lg-end">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a href="orders.html" th:href="@{/orders}" class="btn btn-primary" title="Refresh">
+                                <i class="bi bi-arrow-clockwise"></i><span class="d-none d-sm-inline">Refresh</span>
+                            </a>
+                            <a href="order.html" th:href="@{/order}" class="btn btn-success" title="Add order">
+                                <i class="bi-plus"></i><span class="d-none d-sm-inline">Add order</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="orders">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <table class="table table-striped">
+                            <thead class="table-dark">
+                                <tr>
+<!--                                    <th class="caption-order">Order №</th>-->
+                                    <th>Shipper</th>
+                                    <th>Total price</th>
+<!--                                    <th>Date</th>-->
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="order : ${orders}">
+<!--                                    <td th:text="${order.orderId}">1-->
+<!--                                        <a href="orderproduct.html" th:href="@{/orderproduct} title="product">-->
+<!--                                            <span class="d-none d-md-inline">012021</span>-->
+<!--                                        </a>-->
+<!--                                    </td>-->
+                                    <td th:text="${order.shipper}">Savushkin Product</td>
+                                    <td th:text="${order.totalPrice}">25000</td>
+                                    <!--<td th:text="${order.date}">25000</td> -->
+<!--                                    <td>03.25.2021</td>-->
+                                    <td class="text-end">
+                                        <a href="order.html" th:href="@{|/order/${order.orderId}}"
+                                           class="btn-sm btn-outline-secondary" title="Edit order">
+                                            <i class="bi-pen"></i><span class="d-none d-md-inline">Edit</span></a>
+                                        <span data-bs-toggle="modal" data-bs-target="#deleteDialog"
+                                              th:attr="data-id=${order.orderId},data-name=${order.shipper}">
+                                            <a href="#" class="btn-sm btn-outline-danger" title="delete order"><i
+                                                    class="bi-x"></i><span class="d-none d-md-inline">Delete</span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr th:remove="all">
+<!--                                    <td th:text="${order.orderId}">2-->
+<!--                                        <a href="orderproduct.html" th:href="@{/orderproduct} title="product">-->
+<!--                                        <span class="d-none d-md-inline">022021</span>-->
+<!--                                        </a>-->
+<!--                                    </td>-->
+                                    <td>Santa</td>
+                                    <td>18000</td>
+<!--                                    <td>03.18.2021</td>-->
+                                    <td class="text-end">
+                                        <a href="order.html" th:href="@{/order/2}"
+                                           class="btn-sm btn-outline-secondary" title="Edit order">
+                                            <i class="bi-pen"></i><span class="d-none d-md-inline">Edit</span></a>
+                                        <span data-bs-toggle="modal" data-bs-target="#deleteDialog">
+                                            <a href="#" class="btn-sm btn-outline-danger" title="delete order"><i
+                                                    class="bi-x"></i><span class="d-none d-md-inline">Delete</span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr th:remove="all">
+<!--                                    <td th:text="${order.orderId}">3-->
+<!--                                        <a href="orderproduct.html" th:href="@{/orderproduct} title="product">-->
+<!--                                        <span class="d-none d-md-inline">032021</span>-->
+<!--                                        </a>-->
+<!--                                    </td>-->
+                                    <td>Perfect</td>
+                                    <td>7500</td>
+<!--                                    <td>03.22.2021</td>-->
+                                    <td class="text-end">
+                                        <a href="order.html" th:href="@{/order/3}"
+                                           class="btn-sm btn-outline-secondary" title="Edit order">
+                                            <i class="bi-pen"></i><span class="d-none d-md-inline">Edit</span></a>
+                                        <span data-bs-toggle="modal" data-bs-target="#deleteDialog">
+                                            <a href="#" class="btn-sm btn-outline-danger" title="delete order"><i
+                                                    class="bi-x"></i><span class="d-none d-md-inline">Delete</span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr th:remove="all">
+<!--                                    <td th:text="${order.orderId}">4-->
+<!--                                        <a href="orderproduct.html" th:href="@{/orderproduct} title="product">-->
+<!--                                        <span class="d-none d-md-inline">042021</span>-->
+<!--                                        </a>-->
+<!--                                    </td>-->
+                                    <td>Brest meat-packing plant</td>
+                                    <td>13500</td>
+<!--                                    <td>04.02.2021</td>-->
+                                    <td class="text-end">
+                                        <a href="order.html" th:href="@{/order/4}"
+                                           class="btn-sm btn-outline-secondary"
+                                            title="Edit order">
+                                            <i class="bi-pen"></i><span class="d-none d-md-inline">Edit</span></a>
+                                        <span data-bs-toggle="modal" data-bs-target="#deleteDialog">
+                                            <a href="#" class="btn-sm btn-outline-danger" title="delete order"><i
+                                                    class="bi-x"></i><span class="d-none d-md-inline">Delete</span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr th:remove="all">
+<!--                                    <td th:text="${order.orderId}">5-->
+<!--                                        <a href="orderproduct.html" th:href="@{/orderproduct} title="product">-->
+<!--                                        <span class="d-none d-md-inline">052021</span>-->
+<!--                                        </a>-->
+<!--                                    </td>-->
+                                    <td>Komunarka</td>
+                                    <td>6500</td>
+<!--                                    <td>04.05.2021</td>-->
+                                    <td class="text-end">
+                                        <a href="order.html" th:href="@{/order/5}"
+                                           class="btn-sm btn-outline-secondary"
+                                            title="Edit order">
+                                            <i class="bi-pen"></i><span class="d-none d-md-inline">Edit</span></a>
+                                        <span data-bs-toggle="modal" data-bs-target="#deleteDialog">
+                                            <a href="#" class="btn-sm btn-outline-danger" title="delete order"><i
+                                                    class="bi-x"></i><span class="d-none d-md-inline">Delete</span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr th:remove="all">
+<!--                                    <td th:text="${order.orderId}">6-->
+<!--                                        <a href="orderproduct.html" th:href="@{/orderproduct} title="product">-->
+<!--                                        <span class="d-none d-md-inline">062021</span>-->
+<!--                                        </a>-->
+<!--                                    </td>-->
+                                    <td>Timosha</td>
+                                    <td>4800</td>
+<!--                                    <td>04.06.2021</td>-->
+                                    <td class="text-end">
+                                        <a href="order.html" th:href="@{/order/6}"
+                                           class="btn-sm btn-outline-secondary"
+                                            title="Edit order">
+                                            <i class="bi-pen"></i><span class="d-none d-md-inline">Edit</span></a>
+                                        <span data-bs-toggle="modal" data-bs-target="#deleteDialog">
+                                            <a href="#" class="btn-sm btn-outline-danger" title="delete order"><i
+                                                    class="bi-x"></i><span class="d-none d-md-inline">Delete</span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <hr />
+        <p class="text-center">&copy;2021 Vitali Nesteruk</p>
+    </footer>
+
+    <!-- Confirm delete Modal -->
+    <div class="modal fade" id="deleteDialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header alert-danger">
+                    <h5 class="modal-title" id="exampleModalLabel">Delete order</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Please confirm delete
+                </div>
+                <div class="modal-footer">
+                    <!--<a href="orders.html" class="btn btn-secondary" title="Cancel">Cancel</a>-->
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <a id="deleteUrl" href="#" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../resource/static/js/bootstrap.min.js"
+    th:href="@{/resource/static/js/bootstrap.min.js}"></script>
+    <script src="../../resources/static/js/jquery-3.4.1.slim.min.js"
+            th:src="@{/resources/static/js/jquery-3.4.1.slim.min.js}"></script>
+    <script>
+    $('#deleteDialog').on('show.bs.modal', function (event) {
+        var target = $(event.relatedTarget)
+        $(this).find('.modal-body').text('Please confirm delete order: "' + target.data('name') + '"')
+        document.getElementById('deleteUrl').href = '/order/' + target.data('id') + '/delete';
+    })
+</script>
+</body>
+
+</html>
